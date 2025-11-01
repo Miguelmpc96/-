@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+:root {
+    --color-red: #dc2626;
+    --color-gray-bg: #f3f4f6;
+    --color-gray-text: #4b5563;
+    --color-whatsapp: #128C7E;
+    --color-whatsapp-dark: #075E54;
+}
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: white;
+    color: #1f2937;
+    line-height: 1.6;
+    padding-bottom: 5rem; 
+}
+
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes subtle-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(18, 140, 126, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(18, 140, 126, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(18, 140, 126, 0);
+    }
+}
+.floating-pulse {
+    position: relative;
+    animation: subtle-pulse 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+.carousel-container {
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    user-select: none; 
+}
+.carousel-container::-webkit-scrollbar {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .carousel-container {
+        scrollbar-width: auto;
+        -ms-overflow-style: auto;
+    }
+    .carousel-container::-webkit-scrollbar {
+        display: block;
+        height: 10px;
+    }
+    .carousel-container::-webkit-scrollbar-track {
+        background: #e5e7eb;
+        border-radius: 5px;
+    }
+    .carousel-container::-webkit-scrollbar-thumb {
+        background: #b91c1c;
+        border-radius: 5px;
+    }
+    .carousel-container::-webkit-scrollbar-thumb:hover {
+        background: #dc2626;
+    }
+}
+
+.carousel-item {
+    scroll-snap-align: center;
+    flex: 0 0 70%;
+    transition: all 0.4s ease-in-out;
+    opacity: 0.5;
+    transform: scale(0.85);
+    cursor: grab;
+}
+
+.carousel-container.active-drag {
+    cursor: grabbing;
+}
+
+.carousel-item.is-focused {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+.snap-pad {
+    flex: 0 0 15%; 
+}
+
+@media (min-width: 768px) {
+     .carousel-item {
+        flex: 0 0 25%;
+    }
+    .snap-pad {
+        flex: 0 0 37.5%; 
+    }
+}
